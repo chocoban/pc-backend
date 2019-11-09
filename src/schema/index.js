@@ -1,29 +1,46 @@
 import {
-  GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLList
+  GraphQLObjectType, GraphQLSchema, GraphQLList, GraphQLID
 } from 'graphql';
 
-import { UserType } from '../types';
+import { userType, requestType } from '../types/index';
 import resolvers from '../resolvers/index';
 
-const { user } = resolvers;
+const { userResolver } = resolvers;
+const { getSingleUser } = userResolver;
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    users: {
-      type: GraphQLList,
-    },
     user: {
-      type: UserType,
-      args: { id: { type: GraphQLString } },
-      resolve(parent, args) {
-        const { id } = args;
-        return user.getSingleUser(id);
+      type: userType,
+      args: {
+        id: { type: GraphQLID }
+      },
+      resolve: async (parent, args) => {
+        const singleUser = await getSingleUser(args.id);
+        return singleUser;
+      }
+      
+    },
+    users: {
+      type: new GraphQLList(userType),
+      resolve: async () => {
+        const allUsers = await userResolver.getAllUsers();
+        return allUsers;
+      }
+    },
+    request: {
+      type: requestType,
+      args: {
+        id: { type: GraphQLID }
+      },
+      resolve() {
+        return 'requests go here';
       }
     }
   }
 });
 
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
 });

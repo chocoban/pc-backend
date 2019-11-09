@@ -1,11 +1,22 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql';
+import {
+  GraphQLObjectType, GraphQLString, GraphQLID,
+} from 'graphql';
 
-export const UserType = new GraphQLObjectType({
+export const userType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
-    id: { type: GraphQLString },
-    email: { type: GraphQLString }
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
   })
 });
 
-export const Request = () => {};
+export const requestType = new GraphQLObjectType({
+  name: 'Request',
+  fields: () => ({
+    id: { type: GraphQLID },
+    reason: { type: GraphQLString },
+    createdAt: { type: GraphQLString },
+    updatedAt: { type: GraphQLString }
+  })
+});
