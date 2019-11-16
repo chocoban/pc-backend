@@ -8,7 +8,7 @@
     "start": "NODE_ENV=production yarn run build && node ./dist/index.js",
     "lint": "eslint 'src/**/*.js' --fix",
     "start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js",
-    "test": "NODE_ENV=test jest --watch",
+    "test": "jest",
     "db:rollback": "./node_modules/.bin/sequelize db:migrate:undo:all",
     "migrations": "./node_modules/.bin/sequelize db:migrate"
   },
