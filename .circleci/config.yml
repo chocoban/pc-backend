@@ -26,8 +26,6 @@ jobs:
             ./cc-test-reporter before-build
             yarn test
             ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
-          environment:
-            DB_TEST_URL: "postgres://postgres@localhost:5432/pettyCash_test"
       - store_artifacts:
           path: coverage
           prefix: coverage
