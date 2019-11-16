@@ -15,12 +15,13 @@ jobs:
           POSTGRES_DB: pettyCash
           POSTGRES_PASSWORD: test1234
           POSTGRES_USER: testuser
+
     working_directory: ~/pc-backend
     steps:
       - checkout
       - run:
           name: Setup dependencies
-          command: npm install
+          command: yarn install
       - run:
           name: Setup Code Climate test-reporter
           command: |
@@ -35,9 +36,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            ./cc-test-reporter before-build
+            yarn -v
             yarn test
-            ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
       - store_artifacts:
           path: coverage
           prefix: coverage

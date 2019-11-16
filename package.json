@@ -8,7 +8,7 @@
     "start": "NODE_ENV=production yarn run build && node ./dist/index.js",
     "lint": "eslint 'src/**/*.js' --fix",
     "start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "db:rollback": "./node_modules/.bin/sequelize db:migrate:undo:all",
     "migrations": "./node_modules/.bin/sequelize db:migrate"
   },
@@ -56,23 +56,5 @@
     "sinon": "^7.5.0",
     "superagent": "^5.1.0",
     "supertest": "^4.0.2"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/index.js"
-    ],
-    "testMatch": [
-      "<rootDir>/tests/**/**.test.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/db/migrations",
-      "<rootDir>/db/seeders",
-      "<rootDir>/db/models/index.js"
-    ],
-    "coverageReporters": [
-      "lcov"
-    ]
   }
 }
