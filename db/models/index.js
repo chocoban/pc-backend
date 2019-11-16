@@ -1,11 +1,11 @@
-import config from '../config/config';
+const config  = require('../config/config');
 
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'db';
+const env = process.env.NODE_ENV || 'development';
 
 const db = {};
 

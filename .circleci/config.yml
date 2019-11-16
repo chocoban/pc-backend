@@ -9,6 +9,7 @@ jobs:
           PSQL_DBNAME: pettyCash
           PSQL_PASSWORD: test1234
           NODE_ENV: test
+          JWT_SECRET: 1321425263645758363475757
       - image: circleci/postgres:10
         environment:
           POSTGRES_DB: pettyCash
