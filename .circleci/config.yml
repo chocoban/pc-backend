@@ -3,6 +3,17 @@ jobs:
   build:
     docker:
       - image: circleci/node:10
+        environment:
+          PSQL_HOST: 127.0.0.1
+          PSQL_USER: testuser
+          PSQL_DBNAME: pettyCash
+          PSQL_PASSWORD: test1234
+          NODE_ENV: test
+      - image: circleci/postgres:10
+        environment:
+          POSTGRES_DB: pettyCash
+          POSTGRES_PASSWORD: test1234
+          POSTGRES_USER: testuser
     working_directory: ~/pc-backend
     steps:
       - checkout
@@ -29,3 +40,9 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
