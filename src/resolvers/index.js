@@ -1,7 +1,7 @@
-import user from './user';
+import userResolver from './user';
 
 const resolvers = {
-  user
+  userResolver
 };
 
 module.exports = resolvers;
