@@ -1,23 +1,42 @@
-import models from '../../db/models/Users';
+import dotenv from 'dotenv';
+import models from '../../db/models';
+import { generateToken } from '../utils/authUtils';
+
+dotenv.config();
 
 class User {
-  static async postUser() {
-    const user = await models.User.create({});
-
-    return user;
+  static async postUser(googleData) {
+    const { email, name } = googleData;
+    let user;
+    try {
+      user = await models.User.findOne({
+        where: { email }
+      });
+      if (!user) {
+        user = await models.User.create({ email, name });
+      }
+      const loggedInUser = {
+        id: user.dataValues.id,
+        name: user.dataValues.name,
+        email: user.dataValues.email,
+      };
+      const token = generateToken(user);
+      const currentUser = {
+        user: loggedInUser,
+        token
+      };
+      return currentUser;
+    } catch (err) { return err; }
   }
 
   static async getAllUsers() {
-    const users = await models.User.findAll();
+    const users = await models.User.findAll({});
     return users;
   }
 
   static async getSingleUser(id) {
-    const userId = id;
     const user = await models.User.findOne({
-      where: {
-        id: userId
-      }
+      where: { id }
     });
     return user;
   }
@@ -34,4 +53,4 @@ class User {
   }
 }
 
-module.exports = User;
+export default User;

@@ -8,57 +8,53 @@
     "start": "NODE_ENV=production yarn run build && node ./dist/index.js",
     "lint": "eslint 'src/**/*.js' --fix",
     "start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js",
-    "pretest": "NODE_ENV=test yarn migrations",
-    "test": "NODE_ENV=test jest",
+    "test": "jest --passWithNoTests",
     "db:rollback": "./node_modules/.bin/sequelize db:migrate:undo:all",
     "migrations": "./node_modules/.bin/sequelize db:migrate"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "debug": "^4.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
-    "googleapis": "^43.0.0",
+    "express-session": "^1.17.0",
     "graphql": "^14.5.4",
-    "lodash": "^4.17.15",
+    "http": "0.0.0",
+    "http-status": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-mock": "0.0.3",
+    "passport-mock-googleoauth2": "^1.0.1",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.18.2"
+    "sequelize": "^5.18.2",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
     "@babel/node": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.2",
     "@babel/register": "^7.6.2",
+    "@babel/runtime": "^7.6.3",
     "babel-eslint": "^10.0.3",
+    "chai-http": "^4.3.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-promise": "^4.2.1",
     "jest": "^24.9.0",
     "nodemon": "^1.19.2",
-    "sequelize-cli": "^5.5.1"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/index.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/?(*.)(spec|test).js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/db/migrations",
-      "<rootDir>/db/seeders",
-      "<rootDir>/db/models/index.js"
-    ],
-    "coverageReporters": [
-      "lcov"
-    ]
+    "sequelize-cli": "^5.5.1",
+    "sinon": "^7.5.0",
+    "superagent": "^5.1.0",
+    "supertest": "^4.0.2"
   }
 }
