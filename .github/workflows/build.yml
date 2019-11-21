@@ -6,6 +6,8 @@ jobs:
   build:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    env:
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     strategy:
       matrix:
         node_version: ['10', '12']
