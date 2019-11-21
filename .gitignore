@@ -14,9 +14,6 @@ dist/
 #coverage report
 coverage
 .DS_Store
-test.js
-*.test.js
-*.spec.js
 *.snapshot.js
 
 # logs
