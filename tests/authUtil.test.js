@@ -1,8 +1,10 @@
-const { defaultUser } = require('./__mocks__/authMock');
-const { generateToken } = require('../src/utils/authUtils');
+import { defaultUser } from './__mocks__/authMock';
+import { generateToken } from '../src/utils/authUtils';
 
 
-test('test that token is return', () => {
-  const token = generateToken(defaultUser);
-  expect(token).not.toBeNull();
+describe('test auth', () => {
+  it('test that token is return', () => {
+    const token = generateToken(defaultUser);
+    expect(token).not.toBeNull();
+  });
 });

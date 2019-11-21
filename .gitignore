@@ -21,7 +21,6 @@ npm-debug.log
 logs
 package-lock.json
 yarn-error.log
-yarn.lock
 
 # Webstorm settings files
 .idea/
