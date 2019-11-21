@@ -14,9 +14,6 @@ dist/
 #coverage report
 coverage
 .DS_Store
-test.js
-*.test.js
-*.spec.js
 *.snapshot.js
 
 # logs
@@ -24,7 +21,6 @@ npm-debug.log
 logs
 package-lock.json
 yarn-error.log
-yarn.lock
 
 # Webstorm settings files
 .idea/
