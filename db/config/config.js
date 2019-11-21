@@ -9,15 +9,19 @@ const password = process.env.PSQL_PASSWORD
 
 const config = {
   development: {
+    dialect: 'postgres',
     url: `postgres://${user}:${password}@${host}:5432/${dbName}`
   },
   test: {
+    dialect: 'postgres',
     url: `postgres://${user}:${password}@${host}:5432/${dbName}`,
   },
   staging: {
+    dialect: 'postgres',
     url: `postgres://${user}:${password}@${host}:5432/${dbName}`,
   },
   production: {
+    dialect: 'postgres',
     url: `postgres://${user}:${password}@${host}:5432/${dbName}`,
   }
 };

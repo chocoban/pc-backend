@@ -1,0 +1,6 @@
+# Default code owners
+* @aldookware @emukungu
+
+# ci/cd
+/.github/workflows @aldookware
+
