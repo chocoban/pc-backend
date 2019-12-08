@@ -1,0 +1,28 @@
+# dependency directory
+node_modules/
+.editorconfig
+
+# compiled directory
+dist/
+
+# environment variables
+.env
+
+# vscode directory
+.vscode
+
+#coverage report
+coverage
+.DS_Store
+*.snapshot.js
+
+# logs
+npm-debug.log
+logs
+package-lock.json
+yarn-error.log
+
+# Webstorm settings files
+.idea/
+.db
+
