@@ -30,10 +30,10 @@ app.use(passport.session());
 app.use(authRoutes);
 
 const { checkAuthentication } = auth;
-app.use('/api', checkAuthentication, graphHTTP((req) => ({
+app.use('/api', graphHTTP((req) => ({
   schema,
   graphiql: true,
-  context: req.user
+  context: req
 })));
 
 server.listen(port, () => {

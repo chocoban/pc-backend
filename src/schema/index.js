@@ -2,8 +2,10 @@ import {
   GraphQLObjectType, GraphQLSchema, GraphQLList, GraphQLID
 } from 'graphql';
 
-import { userType, requestType } from '../types/index';
+import Mutation from './mutations/index';
+import { userType } from '../types/index';
 import resolvers from '../resolvers/index';
+import singleRequestQuery from './queries/requests';
 
 const { userResolver } = resolvers;
 const { getSingleUser } = userResolver;
@@ -20,7 +22,7 @@ const RootQuery = new GraphQLObjectType({
         const singleUser = await getSingleUser(args.id);
         return singleUser;
       }
-      
+
     },
     users: {
       type: new GraphQLList(userType),
@@ -29,18 +31,11 @@ const RootQuery = new GraphQLObjectType({
         return allUsers;
       }
     },
-    request: {
-      type: requestType,
-      args: {
-        id: { type: GraphQLID }
-      },
-      resolve() {
-        return 'requests go here';
-      }
-    }
+    request: singleRequestQuery(),
   }
 });
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation
 });
