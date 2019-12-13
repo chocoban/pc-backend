@@ -16,6 +16,10 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         unique: true
       },
+      country: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -26,5 +30,10 @@ export default (sequelize, DataTypes) => {
       }
     }
   );
+  User.associate = (models) => {
+    User.hasMany(models.Request, {
+      foreignKey: 'id'
+    });
+  };
   return User;
 };

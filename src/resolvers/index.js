@@ -6,4 +6,4 @@ const resolvers = {
   requestResolver
 };
 
-module.exports = resolvers;
+export default resolvers;

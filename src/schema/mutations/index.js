@@ -2,13 +2,18 @@ import {
   GraphQLObjectType
 } from 'graphql';
 
-import createOrUpdateRequestMutation from './requests';
+import {
+  createRequestMutation, updateRequestMutation,
+  deleteRequestMutation
+} from './requests';
+
 
 const Mutation = new GraphQLObjectType({
   name: 'RootMutation',
   fields: {
-    addRequest: createOrUpdateRequestMutation(),
-    // updateRequest: createOrUpdateRequestMutation()
+    addRequest: createRequestMutation(),
+    updateRequest: updateRequestMutation(),
+    deleteRequest: deleteRequestMutation()
   }
 });
 

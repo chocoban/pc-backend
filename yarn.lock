@@ -2090,6 +2090,11 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
+easygraphql-format-error@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/easygraphql-format-error/-/easygraphql-format-error-0.0.3.tgz#2084581fe6a8d3f8beb2a47e61fcaff5b7a28a70"
+  integrity sha512-dBaJ6men5multkS20aYhZJ8ASRc4GRdP21mwat8icz+1lZ268bOdiMULLsqU7b37rn3IZKhEmb/IxPRH8LfRPQ==
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
@@ -2878,6 +2883,13 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.2.tgz#6f0952605d0140c1cfdb138ed005775b92d67b02"
   integrity sha512-IItsdsea19BoLC7ELy13q1iJFNmd7ofZH5+X/pJr90/nRoPEX0DJo1dHDbgtYWOhJhcCgMDTOw84RZ72q6lB+Q==
+
+graphql-validation@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/graphql-validation/-/graphql-validation-2.2.2.tgz#70183fc23d9cd04d8f32ca1b4362afd721573145"
+  integrity sha512-6+GE3+JncKElLBDz5bxtzbaslRwxZyCQ1fmMWeZ/yCVQb0BypSo1vfbjOFoW+IDw5biskxRvkmhtwoEHJ7o1zQ==
+  dependencies:
+    validator "^11.0.0"
 
 graphql@^14.5.4:
   version "14.5.8"
@@ -6500,7 +6512,7 @@ validator@^10.11.0:
   resolved "https://registry.yarnpkg.com/validator/-/validator-10.11.0.tgz#003108ea6e9a9874d31ccc9e5006856ccd76b228"
   integrity sha512-X/p3UZerAIsbBfN/IwahhYaBbY68EN/UQBWHtsbXGT5bfrH/p4NQzUCG1kF/rtKaNpnJ7jAu6NGTdSNtyNIXMw==
 
-validator@^11.1.0:
+validator@^11.0.0, validator@^11.1.0:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-11.1.0.tgz#ac18cac42e0aa5902b603d7a5d9b7827e2346ac4"
   integrity sha512-qiQ5ktdO7CD6C/5/mYV4jku/7qnqzjrxb3C/Q5wR3vGGinHTgJZN/TdFT3ZX4vXhX2R1PXx42fB1cn5W+uJ4lg==

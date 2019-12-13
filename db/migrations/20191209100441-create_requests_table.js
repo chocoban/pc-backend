@@ -9,8 +9,31 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
+      amount: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       reason: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      payment: {
+        allowNull: false,
+        type: Sequelize.ENUM('cash', 'mobileMoney'),
+        defaultValue: 'cash',
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: 'Payment cannot be empty',
+          },
+          isIn: {
+            args: [['cash', 'mobileMoney']],
+            msg: 'Payment must be cash or mobile money'
+          }
+        },
+      },
+      authorId: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       createdAt: {

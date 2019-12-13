@@ -4,27 +4,38 @@ import models from '../../db/models';
 dotenv.config();
 
 class Request {
-  static async createOrUpdateRequest(id, formData) {
-    const reason = formData;
-    let request;
-    try {
-      request = await models.Request.findOne({
-        where: { id }
-      });
-      if (request) {
-        console.log('before_update', request);
-        newrequest = await Request.updateRequest(request, reason);
-        console.log('after_update', request);
-      }
-      if (!request) {
-        // console.log('_create', request);
-        request = await models.Request.create({ reason });
-      }
-      const newRequest = {
-        id: request.dataValues.id,
-        reason: request.dataValues.reason
+  static async duplicateRequest(amount, reason, payment, authorId) {
+    const existingRequest = await models.Request.findAll({
+      where: { authorId }
+    });
+    existingRequest.forEach((values) => {
+      const existingRequestValues = {
+        existingAmount: values.dataValues.amount,
+        existingReason: values.dataValues.reason,
+        existingPayment: values.dataValues.payment,
       };
-      return newRequest;
+      const {
+        existingAmount, existingReason, existingPayment
+      } = existingRequestValues;
+      if ((existingAmount === amount)
+            && (existingReason === reason)
+            && (existingPayment === payment)) {
+        throw Error('Request already exists');
+      }
+    });
+  }
+
+  static async createRequest(amount, reason, payment, authorId) {
+    try {
+      const request = await models.Request.create({
+        reason, amount, payment, authorId
+      });
+      return {
+        id: request.dataValues.id,
+        amount: request.dataValues.amount,
+        reason: request.dataValues.reason,
+        payment: request.dataValues.payment,
+      };
     } catch (err) { return err; }
   }
 
@@ -40,24 +51,36 @@ class Request {
     return request;
   }
 
-  static async updateRequest(request, updateFormData) {
-    const { id, reason } = request.datavalues;
-    console.log('fffff###---->');
-    const updatedRequest = await models.Request.update({
-      reason: reason || updateFormData
-    }, {
-      where: { id }, returning: true
-    });
-    return updatedRequest;
+  static async updateRequest(
+    id, updatedAmount, updatedReason, updatedPayment, updatingAuthorId
+  ) {
+    try {
+      const request = Request.getSingleRequest(id);
+      if (!request) {
+        return new Error('Request does not exist');
+      }
+      const {
+        reason, amount, payment, authorId
+      } = request.dataValues;
+      if (updatingAuthorId === authorId) {
+        const updatedRequest = await models.Request.update({
+          amount: amount || updatedAmount,
+          reason: reason || updatedReason,
+          payment: payment || updatedPayment
+        }, {
+          where: { id }, returning: true
+        });
+        return updatedRequest;
+      }
+      return new Error('Unauthorized to edit request');
+    } catch (err) { return err; }
   }
 
   static async deleteRequest(id) {
     try {
-      const request = await models.Request.findOne({
-        where: { id }
-      });
+      const request = Request.getSingleRequest(id);
       if (!request) {
-        return ' Request does not exist';
+        return new Error('Request does not exist');
       }
       await models.Request.destroy({ where: { id } });
       return 'Delete complete';

@@ -9,14 +9,18 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
-      name: { 
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      email: { 
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
+      },
+      country: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
