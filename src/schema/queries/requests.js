@@ -8,9 +8,7 @@ const { requestResolver } = resolvers;
 
 export const singleRequestQuery = () => ({
   type: requestType,
-  args: {
-    id: { type: GraphQLID }
-  },
+  args: { id: { type: GraphQLID } },
   resolve: validator([
     validate('id')
       .not().isEmpty({ msg: 'The Id is required' })

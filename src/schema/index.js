@@ -15,9 +15,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     user: {
       type: userType,
-      args: {
-        id: { type: GraphQLID }
-      },
+      args: { id: { type: GraphQLID } },
       resolve: async (parent, args) => {
         const singleUser = await getSingleUser(args.id);
         return singleUser;

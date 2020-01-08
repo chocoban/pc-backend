@@ -7,7 +7,7 @@ const checkAuthentication = (req, res, next) => {
   res.redirect('/google');
 };
 
-export const generateToken = (user) => {
+export const generateToken = user => {
   const token = jsonwebtoken.sign(
     { id: user.id, email: user.email, name: user.name },
     process.env.JWT_SECRET,
@@ -16,7 +16,7 @@ export const generateToken = (user) => {
   return token;
 };
 
-export const verifyToken = async (req) => {
+export const verifyToken = async req => {
   const [, token] = req.headers.authorization.split(' ');
   try {
     const decodedToken = await jsonwebtoken.verify(token, process.env.JWT_KEY);

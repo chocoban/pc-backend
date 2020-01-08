@@ -1,6 +1,4 @@
-import {
-  GraphQLObjectType
-} from 'graphql';
+import { GraphQLObjectType } from 'graphql';
 
 import {
   createRequestMutation, updateRequestMutation,

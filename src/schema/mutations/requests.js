@@ -35,7 +35,6 @@ export const createRequestMutation = () => ({
       const {
         amount, reason, payment
       } = args;
-      // const author = verifyToken();
       const authorId = 1;
       const dupe = await requestResolver.duplicateRequest(amount, reason, payment, authorId);
       if (dupe) return dupe;
@@ -70,9 +69,7 @@ export const updateRequestMutation = () => ({
 
 export const deleteRequestMutation = () => ({
   type: GraphQLString,
-  args: {
-    id: { type: GraphQLID }
-  },
+  args: { id: { type: GraphQLID } },
   resolve: async (parent, args) => {
     const { id } = args;
     await requestResolver.deleteRequest(id);

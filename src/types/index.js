@@ -28,7 +28,7 @@ export const requestType = new GraphQLObjectType({
     updatedAt: { type: GraphQLString },
     author: {
       type: userType,
-      resolve: (parent) => {
+      resolve: parent => {
         const { authorId } = parent;
         return userResolver.getSingleUser(authorId);
       }

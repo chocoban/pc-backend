@@ -24,11 +24,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api', graphHTTP((req) => ({
+app.use('/api', graphHTTP(req => ({
   schema,
   graphiql: true,
   context: req,
-  customFormatErrorFn: (err) => ({
+  customFormatErrorFn: err => ({
     message: err.message,
     customError: err.originalError.customError
   })

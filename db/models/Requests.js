@@ -44,7 +44,7 @@ export default (sequelize, DataTypes) => {
       }
     }
   );
-  Request.associate = (models) => {
+  Request.associate = models => {
     Request.belongsTo(models.User, {
       foreignKey: 'id',
       as: 'author'

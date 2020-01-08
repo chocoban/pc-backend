@@ -5,10 +5,8 @@ dotenv.config();
 
 class Request {
   static async duplicateRequest(amount, reason, payment, authorId) {
-    const existingRequest = await models.Request.findAll({
-      where: { authorId }
-    });
-    existingRequest.forEach((values) => {
+    const existingRequest = await models.Request.findAll({ where: { authorId } });
+    existingRequest.forEach(values => {
       const existingRequestValues = {
         existingAmount: values.dataValues.amount,
         existingReason: values.dataValues.reason,
@@ -27,9 +25,7 @@ class Request {
 
   static async createRequest(amount, reason, payment, authorId) {
     try {
-      const request = await models.Request.create({
-        reason, amount, payment, authorId
-      });
+      const request = await models.Request.create({ reason, amount, payment, authorId });
       return {
         id: request.dataValues.id,
         amount: request.dataValues.amount,
@@ -45,9 +41,7 @@ class Request {
   }
 
   static async getSingleRequest(id) {
-    const request = await models.Request.findOne({
-      where: { id }
-    });
+    const request = await models.Request.findOne({ where: { id } });
     return request;
   }
 
@@ -67,9 +61,7 @@ class Request {
           amount: amount || updatedAmount,
           reason: reason || updatedReason,
           payment: payment || updatedPayment
-        }, {
-          where: { id }, returning: true
-        });
+        }, { where: { id }, returning: true });
         return updatedRequest;
       }
       return new Error('Unauthorized to edit request');
