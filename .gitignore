@@ -4,6 +4,7 @@ node_modules/
 
 # compiled directory
 dist/
+db/mgrations/
 
 # environment variables
 .env

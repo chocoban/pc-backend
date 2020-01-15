@@ -6,12 +6,12 @@ dotenv.config();
 
 class User {
   static async postUser(googleData) {
-    const { email, name } = googleData;
+    const {
+      email, name
+    } = googleData;
     let user;
     try {
-      user = await models.User.findOne({
-        where: { email }
-      });
+      user = await models.User.findOne({ where: { email } });
       if (!user) {
         user = await models.User.create({ email, name });
       }
@@ -35,19 +35,13 @@ class User {
   }
 
   static async getSingleUser(id) {
-    const user = await models.User.findOne({
-      where: { id }
-    });
+    const user = await models.User.findOne({ where: { id } });
     return user;
   }
 
   static async updateUser(req, res) {
     const userId = req.params.id;
-    const user = await models.User.findOne({
-      where: {
-        id: userId
-      }
-    });
+    const user = await models.User.findOne({ where: { id: userId } });
     return res.statusCode(200)
       .json({ data: user });
   }

@@ -9,22 +9,28 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
-      name: { 
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      email: { 
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
+      country: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
     })
   },

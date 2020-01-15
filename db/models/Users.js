@@ -16,15 +16,24 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         unique: true
       },
+      country: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
       },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
       }
     }
   );
+  User.associate = models => {
+    User.hasMany(models.Request, { foreignKey: 'id' });
+  };
   return User;
 };
